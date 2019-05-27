@@ -28,16 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.serialPort2 = new System.IO.Ports.SerialPort(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.tb = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(634, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(295, 137);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tb
+            // 
+            this.tb.Location = new System.Drawing.Point(12, 12);
+            this.tb.Name = "tb";
+            this.tb.Size = new System.Drawing.Size(564, 655);
+            this.tb.TabIndex = 1;
+            this.tb.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(941, 698);
+            this.Controls.Add(this.tb);
+            this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -46,8 +65,8 @@
 
         #endregion
 
-        private System.IO.Ports.SerialPort serialPort1;
-        private System.IO.Ports.SerialPort serialPort2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox tb;
     }
 }
 

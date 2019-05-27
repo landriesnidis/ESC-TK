@@ -6,26 +6,39 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ESC_TK
+namespace Landriesnidis.Serial.ESC_TK
 {
-
-
-
     public class SerialBackgroundWorker : BackgroundWorker
     {
         // 串行端口
         public SerialPort SerialPort { get; set; } = new SerialPort();
 
+        /// <summary>
+        /// 定义委托：数据接收事件委托
+        /// </summary>
+        /// <param name="e"></param>
         public delegate void SerialDataReceivedEventHandler(SerialDataReceivedEventArgs e);
-        public event SerialDataReceivedEventHandler SerialDataReceivedEvent;
-        
-        // 终止符
-        public DataMark EndMark = DataMark.LF;
 
-        // 字符编码
+        /// <summary>
+        /// 定义事件：数据接收事件
+        /// </summary>
+        public event SerialDataReceivedEventHandler SerialDataReceivedEvent;
+
+        /// <summary>
+        /// 终止符
+        /// 当接收模式为“STRING”时有效
+        /// </summary>
+        public DataMark EndMark { get; set; } = DataMark.LF;
+
+        /// <summary>
+        /// 字符编码
+        /// </summary>
         public Encoding Encode { get; set; } = Encoding.ASCII;
 
-        public DataMode Mode { get; set; } = DataMode.STRING;
+        /// <summary>
+        /// 数据接收模式
+        /// </summary>
+        public DataReceiveMode Mode { get; set; } = DataReceiveMode.STRING;
 
         public Control ContentControl { get; set; }
 
@@ -36,17 +49,12 @@ namespace ESC_TK
             DoWork += SerialBackgroundWorker_DoWork;
             ProgressChanged += SerialBackgroundWorker_ProgressChanged;
             RunWorkerCompleted += SerialBackgroundWorker_RunWorkerCompleted;
-            SerialDataReceivedEvent += SerialBackgroundWorker_SerialDataReceivedEvent;
             SerialPort.DataReceived += Serial_DataReceived;
-        }
-
-        private void SerialBackgroundWorker_SerialDataReceivedEvent(SerialDataReceivedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void Serial_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
+            /*
             int len1 = SerialPort.BytesToRead;
             int len2 = len1;
 
@@ -56,11 +64,13 @@ namespace ESC_TK
                 len1 = len2;
                 System.Threading.Thread.Sleep(10);
             }
+            */
 
             SerialDataReceivedEventArgs args = new SerialDataReceivedEventArgs();
             args.SerialPort = SerialPort;
+            args.DataReceiveMode = Mode;
 
-            if (Mode == DataMode.STRING)
+            if (Mode == DataReceiveMode.STRING)
             {
                 // 终止符字符串
                 string strEndMark = string.Empty;
@@ -80,9 +90,11 @@ namespace ESC_TK
                         break;
                 }
 
+                // 读取数据直到终止符
                 string strData = SerialPort.ReadTo(strEndMark);
                 args.DataText = strData;
                 args.Bytes = Encode.GetBytes(strData);
+                args.IsHexData = false;
             }
             else
             {
@@ -91,6 +103,7 @@ namespace ESC_TK
 
                 args.Bytes = ReceivedData;
                 args.DataText = Encode.GetString(ReceivedData);
+                args.IsHexData = true;
             }
 
             try
@@ -111,7 +124,7 @@ namespace ESC_TK
             }
 
             // 回调事件 
-            SerialDataReceivedEvent(args);
+            // SerialDataReceivedEvent(args);
         }
 
         /// <summary>
@@ -122,7 +135,7 @@ namespace ESC_TK
         /// <param name="e"></param>
         private void SerialBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         /// <summary>
@@ -133,7 +146,7 @@ namespace ESC_TK
         /// <param name="e"></param>
         private void SerialBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         /// <summary>
@@ -144,7 +157,7 @@ namespace ESC_TK
         /// <param name="e"></param>
         private void SerialBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            throw new NotImplementedException();
+            SerialPort.Open();
         }
 
 
@@ -184,12 +197,16 @@ namespace ESC_TK
         }
     }
 
+    /// <summary>
+    /// 串口数据接收事件参数
+    /// </summary>
     public class SerialDataReceivedEventArgs
     {
         public SerialPort SerialPort { get; set; }
         public bool IsHexData { get; set; }
         public byte[] Bytes { get; set; }
         public string DataText { get; set; }
+        public DataReceiveMode DataReceiveMode { get; set; }
     }
 
     /// <summary>
@@ -201,9 +218,12 @@ namespace ESC_TK
         LF,         // \n
         CR_LF       // \r\n
 
-}
+    }
 
-    public enum DataMode
+    /// <summary>
+    /// 数据接收模式
+    /// </summary>
+    public enum DataReceiveMode
     {
         BYTES,
         STRING

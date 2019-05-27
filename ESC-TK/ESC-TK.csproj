@@ -7,7 +7,7 @@
     <ProjectGuid>{5D2D17B5-88C6-4084-9A55-5238BB0BD10F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ESC_TK</RootNamespace>
+    <RootNamespace>Landriesnidis.ESC_TK</RootNamespace>
     <AssemblyName>ESC-TK</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs">
+    <Compile Include="Serial\SerialBackgroundWorker.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

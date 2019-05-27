@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "Windows
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESC-TK", "ESC-TK\ESC-TK.csproj", "{5D2D17B5-88C6-4084-9A55-5238BB0BD10F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCTool", "SCTool\SCTool.csproj", "{43BD9F4D-C5E8-4031-A75E-3BAE2A78353D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5D2D17B5-88C6-4084-9A55-5238BB0BD10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D2D17B5-88C6-4084-9A55-5238BB0BD10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D2D17B5-88C6-4084-9A55-5238BB0BD10F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43BD9F4D-C5E8-4031-A75E-3BAE2A78353D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43BD9F4D-C5E8-4031-A75E-3BAE2A78353D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43BD9F4D-C5E8-4031-A75E-3BAE2A78353D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43BD9F4D-C5E8-4031-A75E-3BAE2A78353D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
