@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -82,6 +85,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\SVN\VirtualCar\Virtual Car\Virtual Car.csproj">
+      <Project>{72ee8bb3-7703-488a-ad75-6a3d36c5b58c}</Project>
+      <Name>Virtual Car</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ESC-TK\ESC-TK.csproj">
       <Project>{5d2d17b5-88c6-4084-9a55-5238bb0bd10f}</Project>
       <Name>ESC-TK</Name>

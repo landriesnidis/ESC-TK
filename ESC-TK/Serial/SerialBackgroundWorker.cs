@@ -33,7 +33,7 @@ namespace Landriesnidis.Serial.ESC_TK
         /// <summary>
         /// 字符编码
         /// </summary>
-        public Encoding Encode { get; set; } = Encoding.ASCII;
+        public Encoding Encode { get { return SerialPort.Encoding; } set { SerialPort.Encoding = value; } }
 
         /// <summary>
         /// 数据接收模式
@@ -54,7 +54,7 @@ namespace Landriesnidis.Serial.ESC_TK
 
         private void Serial_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            /*
+            
             int len1 = SerialPort.BytesToRead;
             int len2 = len1;
 
@@ -64,7 +64,7 @@ namespace Landriesnidis.Serial.ESC_TK
                 len1 = len2;
                 System.Threading.Thread.Sleep(10);
             }
-            */
+            
 
             SerialDataReceivedEventArgs args = new SerialDataReceivedEventArgs();
             args.SerialPort = SerialPort;
@@ -158,42 +158,6 @@ namespace Landriesnidis.Serial.ESC_TK
         private void SerialBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             SerialPort.Open();
-        }
-
-
-        private string String2Hex(string input)
-        {
-            char[] values = input.ToCharArray();
-            StringBuilder sb = new StringBuilder();
-            foreach (char letter in values)
-            {
-                int value = Convert.ToInt32(letter);
-                string hexOutput = String.Format("{0:X} ", value);
-                sb.Append(hexOutput);
-            }
-            return sb.ToString().Replace("D A ", "D A \r\n");
-        }
-
-        private string Hex2String(string input)
-        {
-            StringBuilder sb = new StringBuilder();
-            try
-            {
-                string[] hexValuesSplit = input.Split(' ');
-                foreach (String hex in hexValuesSplit)
-                {
-                    if (hex == "") continue;
-                    int value = Convert.ToInt32(hex, 16);
-                    string stringValue = Char.ConvertFromUtf32(value);
-                    //char charValue = (char)value;
-                    sb.Append(stringValue);
-                }
-            }
-            catch (FormatException ex)
-            {
-                return ex.Message;
-            }
-            return sb.ToString();
         }
     }
 

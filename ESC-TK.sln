@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESC-TK", "ESC-TK\ESC-TK.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCTool", "SCTool\SCTool.csproj", "{43BD9F4D-C5E8-4031-A75E-3BAE2A78353D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Virtual Car", "..\..\..\SVN\VirtualCar\Virtual Car\Virtual Car.csproj", "{72EE8BB3-7703-488A-AD75-6A3D36C5B58C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{43BD9F4D-C5E8-4031-A75E-3BAE2A78353D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43BD9F4D-C5E8-4031-A75E-3BAE2A78353D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43BD9F4D-C5E8-4031-A75E-3BAE2A78353D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72EE8BB3-7703-488A-AD75-6A3D36C5B58C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EE8BB3-7703-488A-AD75-6A3D36C5B58C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EE8BB3-7703-488A-AD75-6A3D36C5B58C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EE8BB3-7703-488A-AD75-6A3D36C5B58C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
